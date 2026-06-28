@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Heisenberg HVAC — Pricer</title>
+<meta name="theme-color" content="#13151A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pricer">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkhlaXNlbmJlcmcgUHJpY2VyIiwgInNob3J0X25hbWUiOiAiUHJpY2VyIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwgImJhY2tncm91bmRfY29sb3IiOiAiIzEzMTUxQSIsICJ0aGVtZV9jb2xvciI6ICIjMTMxNTFBIiwgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBSUFBQURkdnZ0UUFBQUhLMGxFUVZSNG5PM2R1MjhjVlJUSDhYTm03dTU2dmRoWkk1SVFGRVFLWHFKRlFvb2kwWkFLOFEvUTBkQWc4UjhnU2lyK0M1Q2dRUFEwdEFna0drb2tYZ1VTUWdrUWNJS3pucm1IWXUwOElBTFdaeDVueHQrUFhMZ2F6K1BuYytmZXVYTkhuM3J1QlFGT3F1aDdCekJzU2NUNjNnY01XREx5QXdlYU1MZ1FJTGdRSUxod0V3MFhLaEJjQ0JCY0VpMFlQS2hBY0VrVUlIalFDNE1MVFJoY0NCQmNDQkJjNk1iRGhadG91TkNFd1lWeElMaFFnZUJDZ09CQ2dPQkNMd3d1akFQQmhTWU1MZ1FJTGdRSUxnUUlMc200aTRZREZRZ3VCQWd1akFQQmhRb0VGd0lFRndJRUZ4Nm13b1VLQkJlbXRNS0ZDZ1FYeG9IZ1FnV0NDNzB3dUZDQjRKTDYzb0g3YUF2YjdMZkFqdStJL2laV2dHb1RhL3JiQzRXcXRuRVovNThxTjMrNXk2Sy80L21IUUFFeWtjVzBTSVdZTmZTZmE2SXFCNGUyeXRiTEtWZVIzYTJ5OGZqZVd1VVdZbmxDVVFKVXFPeXY4cnV2bkw5OGFiRy95bzNjbXRWbXkzbjU5aWMvZi96Vjc4dDVXWGQ0MWxXa3lyWTdMOTkvOWVMdVZsazFsMkJWZWUzREg3Kzl2cHBQTkVLTW9reHBOUkVUVzB5TDVid3NDMjJrU05mWmx2TnlVa28yTTdHT2o5VEVSR3gzcXp3emJ6aEFxdXZEQ1hIbElnMGttdFFtVmJZcVcxTUJxckpZUG9wbjEwZHFJc2VIMDJ5QTdoNU9nR3NYcFFsYjAzdCttdHBhdjVvOUlnbHdSSC9ET0JCY0NCQmNDQkJjQ0JCY1FqMU1iV2xQVENTTEZQMTB3d2EyNVkxUmdlQVM1YlBmSnEyTjlLM0hFTmREYngxcThTLzJkRVFQUkFXQ0N3R0NDd0dDeTJub2hVbWZEOE1HdHVXTlVZSGdRb0RnUW9EZ0VpbEFVWnAxYkNEV2hMSVd0enltZTJnSk5LRXNVZ1hDQU1XYUU5MzQvNVRlTis3Zjlaem8xcDdOU0p3NTBWUWd1QkFndUJBZ3VCQWd1QkFndVBBd3RUMm40bUZxc0lIRU5uYW1yL2M0Mjg1UGpCVFJoTUdGQU1FbHlqclI0NnYzNHp1aUI2SUN3WVVBd1dYODNmaENyVlFwVkxwYzVrNUZDcFhXMWpJTTBueUpSRnNmcUhFcTh1ZWgzVGlveTFLN1grS3VMTUpjNTlhTU9VQ3FjcGp0bVhPemw1N2VlV2hXNWc1ZjVGU1JPdHRpVnFaQ0k3dy8ycDVnQTRtTktsVDNWL24xeTQrOGNlVnNZeXUvYnNKTURnNXp0cVliejBqZHNERlhJQkZSa2R1SGR0RGZtWTYwcEhNclJoNGdXUzlyMnZjK2pCamRlTGhFbXhPTi8zWm5hWmNJNTRzS0JCY0NCQmNDQkJjQ0JKY3hEeVNPVnFTQlJDb1FYS0k5amJmalh4ajgreGN4aW8rSVVJSGdSSURnRW10T2RKQ2RDUzdTUFRRVkNENEVDQzRFYUtBaU5GOGlJaW5FRnp2VzR1eEpjUDBzdWZaZ1ZDQzRqSDlHWWpheC9tcGJPZlk1clNNUGtKa3Nwc1UwOWZCcXhQcjc3bjhjMUFIYW1SYU5PVUJtTWt2NjJmZjczMTIvUFMyMTYzZmpUU2FsWG4xNmQ5SkhmRHN6NWdCbHMrMXArY0dYMTkvNy9OcnVJblg5WW1GdHkrMTA1YzFuWjVOVU5mNW1UeGhqRHBBY04ySExSVnB1ZHg2Z2JHZm1TY2NhbkdQam4xUmZteDNtWE9YY2ZZQ3FuTnZZZUtSUHB0S05oMCt3R1lsdEw4blVwZE94d2hRVkNDNEVDQzRFQ0M0RUNDN1JKdFczdCtVeDNVVzN2ZkVOVUlIZ1FvRGdjaW9DRktMV2oxUUtNUjYrYnRMYjJCUHRiZVMvdmI5b2taNWxuSW9LaFBZUUlMaEU2OGEzOFZiOGlEKzMwajhxRUZ3SUVGd0lFRndJRUZ3SUVGeUN6VWlVc1hUQzlQNi8ySGpuTWt3L0xGbzN2cjB0MDQxdlJhd0ZwdHJiOHBqaUk1RVN4RDBRWEFnUVhBZ1FYQWdRWEFnUVhPSjA0NVYrMklaYkRuSGg0ZzBrdHJUbFVlWW53TFdqQ1lNTEFZSkxvSkZvRWFuTnFteFZ0cktKSjBkMXRpb2ZMYkRaVjcydnN0WFo2bXhOclRTbGV2ZUxSaEd1WGFBVnlyTEl6bFo2ZURHWmxGSTJjYjdyYkR1THlTeHBoeXRMM1dVaXFySzNuZmEySjFXZEd3eFFvZHJLd2xVbm91Y3VYT3A3SDBSRVZPUXcyNHRQN2o2Nk0xM1Yxc2ppdU5sa2x2U0xIL2EvdVhZdzYzeWxTek9aSnIzNnpIS2FOR2RwY0syN1Q3KytjZU9nU3RyMXNxRVBwT2N1UE5IM1BoeFJrZjFWcm1xN1U2WDlHOHo5TGZNcmQ1YjViWFl1aDhuT1ZxRFZwd00xWVNheU0ydWs3YnBMUldycmJaMXhGZG5iYnY0TWQ3blk0MzhLRkNBUnlURysvOUNnVUJlN0RYVGo0UkpwSkJvRFJBV0NTNng3b0UzRjZZeDREUHJHTDg3VCtJMlp5TTNWb0UrK2lJaVlURk14S1laNkdGRWVaV3hFUmN5a0xPWDVpL05VaEJoUE94a3pTNlYrLzh2cTJzMHFsWVA4cU05UW03RGFiSkhLZDE1KzdNeFdXZVdoZmd1bnpyYWNsMjk5OHROSFgvMjJsNHA2Z0FrYWFvRFdicTF5S25UUUFacVVBOTUvR1hxQUNqMzZHZWdGc0NIdi9CcmRlTGdRSUxoRSttNzhSc3pFVEZXT2Z2cmVuWk5SRlZXTnRlenFodlRzK2NmNzNvY1RLbFRPNzB3S2JXVmR4VzZZU1ZIb0x6ZXIvVlVlNktEb2dHK2lzOGtQdjY0R0hCOFJPZjY0ODBEVEk0TU9rSWpNMG1CUC9MMkdQSm8rN0FBTjhKNWhiQWI1S0FOeDBJMkh5NENmeGlNQ0toQmNtTklLRnlvUVhBZ1FYQWdRWEFnUVhBZ1FYQmdIZ2d1UE11QkNFd1lYQWdRWFJxTGhRZ1dDQ3dHQ0M5MTR1RkNCNEVLQTRFS0E0RUtBNEVLQTRKSjR0UW9lVkNDNE1BNEVGeW9RWEFnUVhQNEM0ZW56MVlaTzhCOEFBQUFBU1VWT1JLNUNZSUk9IiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9wbmciLCAicHVycG9zZSI6ICJhbnkifSwgeyJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFnQUFBQUlBQ0FJQUFBQjdHa090QUFBSXEwbEVRVlI0bk8zZHNhMWNWUlJBMGZub3RHQVFnU1ZrQ1FsQmFoRlFnNnNnSjdEa01zaklxWUlhQ0JBcHFWdjVCRzdnSnBkai9sNnJncWZSMGRzNmIyYmVmZnIyK3g4ZkFQUjhzWDBCQU93UUFJQW9BUUNJRWdDQUtBRUFpSnJINDNuN0dnQllZQU1BaUJvTEFFRFR1UDhETkhrRUJCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVWQ0R0NoQmxBd0NJRWdDQUtBRUFpQklBZ0NnQkFJaHlJaGhBbEEwQUlFb0FBS0lFQUNCS0FBQ2l4bmZBQUUwMkFJQW9BUUNJOGpaUWdDZ2JBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlF6Z1FHaWJBQUFVUUlBRU9WMTBBQlJOZ0NBS0FFQWlCSUFnQ2dCQUlnYVh3RUROTmtBQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWd5bmtBQUZFMkFJQW9oOElEUk5rQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9zYXJnQUNhYkFBQVVjNERBSWl5QVFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVVErRUJvbXdBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkRvUUJpTElCQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSSTNmQUFFMDJRQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaXhxdUFBSnBzQUFCUkFnQVFKUUFBVWM0REFJaXlBUUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkV6ZllGZFAzNXk1dnRTN2pycDk4K2JsL0N5MkZhdU1FR0FCQTFUZ1BnRXFQRk9kT3l3b0V3M0dPME9HZGFGbmdFQkJBMXVzc3RSb3R6cG1XRERRQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSU1xSllOeGp0RGhuV2hiWUFBQ2lCQUFnU2dBQW9nUUFJRW9BQUtMR2QrL2NZclE0WjFvMmpJK2RTNHdXNTB6TENvK0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpSEFqRFBVYUxjNlpsZ1EwQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ2FyeUJnMXVNRnVkTXl3WWJBRUNVQUFCRUNRQkFsQUFBUkkydlhyakVhSEhPdEt4d0loajNHQzNPbVpZRkhnRUJSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBMkc0eDJoeHpyUXNHQjg3dHhndHpwbVdEUjRCQVVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFU05YOTl5aWRIaW5HbFpZUU1BaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2duZ25HUDBlS2NhVmxnQXdDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlDbzhlTXJMdm5yL1hmYmw4RC9oeHZSQmhzQVFKUUFBRVFKQUVDVUFBQkVDUUJBbEFBQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQTFEeDdCd2V3elkxb2hRMEFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdhcnlCQTlqblJyVEJCZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQTF2bjBIUGdOdVJBdHNBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFOZjU5QWF4ekkxcGhBd0NJRWdDQUtBRUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FxSGs4K3djR3NNMk5hSU1OQUNCS0FBQ2lCQUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSm0rd0o0c2Q3KytzLzJKYndjZjMvNFlmc1NlSUZzQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkh6ZURpSmpVdU1GdWRNeTRMeHFYT0owZUtjYVZuaEVSQkFsQUFBUkFrQVFOUjQ5c1l0Um90enBtV0REUUFnU2dBQW9nUUFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaW5BakdQVWFMYzZabGdRMEFJRW9BQUtJRUFDQktBQUNpQkFBZ1NnQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaXh2K3Z1Y1JvY2M2MHJCZ2ZQTGNZTGM2WmxnMGVBUUZFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVSXlHNXgyaHh6clFzc0FFQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSQWtBUUpRQUFFUUpBRUNVQUFCRUNRQkFsQUFBUkFrQVFKUUFBRVFKQUVEVU9JYUJXNHdXNTB6TEJoc0FRSlFqSWJuSGFISE90Q3l3QVFCRWpleHlpZEhpbkdsWllRTUFpQklBZ0NnQkFJZ1NBSUFvQVFDSUVnQ0FLQUVBaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2dCQUlnU0FJQW9SMEp5ajlIaW5HbFpZQU1BaUJJQWdDZ0JBSWdhVDk2NHhXaHh6clJzc0FFQVJBa0FRSlFBQUVRSkFFQ1VBQUJFQ1FCQWxBQUFSSTFmMzNLSjBlS2NhVmxoQXdDSUVnQ0FLQUVBaUJJQWdLaW5MNy8rWnZzYUFGaGdBd0NJY2lRa1FKUU5BQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9zYWJJQUNhYkFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVWTZFQklpeUFRQkVDUUJBMUhnQUJOQTAyeGZBamo5K2ZyTjlDWHhlM3YzK2Nmc1MrSzk1QkFRUUpRQUFVUUlBRUNVQUFGRUNBQkFsQUFCUkFnQVFKUUFBVVFJQUVDVUFBRkVDQUJBbEFBQlI0endZNFBGd05GU1JEUUFneXBHUXdDZHVCVGsyQUlDb3AxZGZ2ZDYrQmdBVzJBQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCcXZQOEpvTWtHQUJBbEFBQlJBZ0FRSlFBQVVRSUFFT1ZJU0lBb0d3QkFsQUFBUkFrQVFOVDRDZ0NneVFZQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFQ1VBQUZFQ0FCQWxBQUJSQWdBUUpRQUFVUUlBRUNVQUFGRUNBQkRsVEdDQUtCc0FRSlFBQUVRSkFFRFUrQVlBb01rR0FCQWxBQUJSQWdBUUpRQUFVUUlBRURYK0NBelFaQU1BaUJJQWdDZ0JBSWdTQUlBb0FRQ0lFZ0NBS0FFQWlCSUFnQ2hIUWdKRTJRQUFvZ1FBSUVvQUFLSUVBQ0JLQUFDaUJBQWdTZ0FBb2dRQUlFb0FBS0lFQUNCS0FBQ2lCQUFnU2dBQW9nUUFJR3E4REJxZ3lRWUFFRFhPZ3dGb3NnRUFSQWtBUUpRemdRR2liQUFBVVFJQUVDVUFBRkVDQUJBbEFBQlJBZ0FRSlFBQVVRSUFFUFV2cS9tWWhuZzhTSWtBQUFBQVNVVk9SSzVDWUlJPSIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiwgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIn1dfQ==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#13151A; --surface:#1B1E26; --surface2:#232733; --line:#2E3340;
+    --text:#EAE8E3; --muted:#888F9E; --faint:#5B6270;
+    --copper:#C97A40; --copper-br:#E69150;
+    --green:#46B583; --green-dim:#234d3c; --green-band:rgba(70,181,131,.16);
+    --amber:#E0A33C; --red:#D8654E; --red-band:rgba(216,101,78,.12);
+    --display:'Oswald','Arial Narrow',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --body:'Inter',system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{background:var(--bg);}
+  body{font-family:var(--body);color:var(--text);min-height:100vh;
+    display:flex;justify-content:center;padding:max(18px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(40px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));line-height:1.45;
+    background:radial-gradient(120% 80% at 50% -10%, #1c2029 0%, var(--bg) 60%);}
+  .app{width:100%;max-width:440px;}
+
+  header{display:flex;align-items:baseline;justify-content:space-between;
+    padding:2px 2px 14px;border-bottom:1px solid var(--line);margin-bottom:14px;}
+  .brand{font-family:var(--display);font-weight:700;letter-spacing:.13em;
+    font-size:1.18rem;text-transform:uppercase;}
+  .brand .b2{color:var(--copper);}
+  .tag{font-size:.66rem;color:var(--faint);text-transform:uppercase;letter-spacing:.14em;}
+
+  .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;}
+  .tabs::-webkit-scrollbar{height:0;}
+  .tab{flex:none;padding:8px 13px;border-radius:10px;border:1px solid var(--line);
+    background:var(--surface);cursor:pointer;white-space:nowrap;transition:.13s;text-align:left;}
+  .tab .t-name{font-family:var(--display);font-weight:600;font-size:.84rem;
+    letter-spacing:.04em;color:var(--text);text-transform:uppercase;line-height:1.1;}
+  .tab .t-sub{font-size:.55rem;color:var(--faint);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;}
+  .tab.on{background:var(--copper);border-color:var(--copper-br);box-shadow:0 4px 14px rgba(201,122,64,.3);}
+  .tab.on .t-name{color:var(--bg);} .tab.on .t-sub{color:rgba(0,0,0,.55);}
+  .tab.dis{opacity:.38;cursor:not-allowed;}
+
+  .subtabs{display:none;align-items:center;gap:6px;margin:0 0 16px;padding:9px 11px;
+    background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--copper);border-radius:11px;overflow-x:auto;}
+  .subtabs::-webkit-scrollbar{height:0;}
+  .subtabs .sub-cap{flex:none;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-right:3px;font-weight:600;}
+  .subtab{flex:none;padding:6px 12px;border-radius:8px;border:1px solid var(--line);
+    background:transparent;cursor:pointer;white-space:nowrap;transition:.13s;
+    font-family:var(--display);font-weight:600;font-size:.74rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--muted);}
+  .subtab:active{transform:scale(.96);}
+  .subtab.on{background:var(--surface2);border-color:var(--copper-br);color:var(--copper-br);}
+
+  .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;
+    color:var(--muted);margin:0 2px 9px;font-weight:600;}
+
+  .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:16px;}
+  .chip{font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);border-radius:11px;
+    padding:13px 0;text-align:center;cursor:pointer;transition:.13s;user-select:none;}
+  .chip:active{transform:scale(.95);}
+  .chip.on{color:var(--bg);background:var(--copper);border-color:var(--copper-br);
+    box-shadow:0 4px 14px rgba(201,122,64,.32);}
+  .chip.x.on{background:var(--amber);border-color:var(--amber);box-shadow:0 4px 14px rgba(224,163,60,.3);}
+
+  .extrap{display:none;font-size:.74rem;line-height:1.42;color:var(--amber);
+    background:rgba(224,163,60,.09);border:1px solid #6a4a1f;border-radius:11px;
+    padding:11px 13px;margin:0 0 20px;}
+  .extrap b{font-weight:700;}
+
+  .field{position:relative;margin-bottom:14px;}
+  .field .cur{position:absolute;left:16px;top:50%;transform:translateY(-50%);
+    font-family:var(--mono);font-size:1.25rem;color:var(--faint);pointer-events:none;}
+  input[type=number]{width:100%;font-family:var(--mono);font-weight:700;font-size:1.4rem;
+    color:var(--text);background:var(--surface);border:1px solid var(--line);
+    border-radius:13px;padding:15px 16px 15px 34px;outline:none;transition:.13s;}
+  input[type=number]:focus{border-color:var(--copper);background:var(--surface2);}
+  input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;}
+  input[type=number]{-moz-appearance:textfield;}
+
+  details{margin-bottom:24px;border:1px solid var(--line);border-radius:11px;background:var(--surface);overflow:hidden;}
+  summary{list-style:none;cursor:pointer;padding:11px 15px;font-size:.74rem;
+    text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;
+    display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+';font-family:var(--mono);color:var(--faint);font-size:1.1rem;}
+  details[open] summary::after{content:'–';}
+  .adv-grid{padding:4px 15px 15px;display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .adv-grid .mini{display:flex;flex-direction:column;gap:5px;}
+  .adv-grid label{font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);}
+  .adv-grid input{font-size:.95rem;padding:9px 11px;border-radius:8px;}
+
+  .readout{background:linear-gradient(160deg,#1d2129,#171a21);
+    border:1px solid var(--line);border-radius:16px;padding:20px 18px 18px;
+    margin-bottom:14px;position:relative;overflow:hidden;}
+  .readout::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;
+    background:linear-gradient(90deg,var(--copper),transparent 70%);}
+  .ro-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);}
+  .price{font-family:var(--mono);font-weight:800;font-size:3.05rem;line-height:1.02;
+    letter-spacing:-.02em;margin:5px 0 3px;color:var(--text);font-variant-numeric:tabular-nums;}
+  .ro-sub{font-size:.7rem;color:var(--faint);font-family:var(--mono);}
+
+  .winbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 16px 17px;margin-bottom:14px;}
+  .win-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:13px;}
+  .win-cap{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;}
+  .win-range{font-family:var(--mono);font-size:.72rem;color:var(--faint);white-space:nowrap;}
+  .bar{position:relative;height:11px;border-radius:6px;overflow:hidden;background:var(--red-band);border:1px solid var(--line);}
+  .bar .green{position:absolute;top:0;bottom:0;background:var(--green-band);border-left:1px solid var(--green-dim);border-right:1px solid var(--green-dim);}
+  .marker{position:absolute;top:-5px;width:3px;height:21px;border-radius:2px;background:var(--text);box-shadow:0 0 0 2px var(--bg);transition:left .18s,background .18s;}
+  .marker.out{background:var(--amber);}
+  .win-state{margin-top:11px;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:7px;}
+  .dot{width:8px;height:8px;border-radius:50%;flex:none;}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;}
+  .stat .s-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);margin-bottom:5px;}
+  .stat .s-val{font-family:var(--mono);font-weight:800;font-size:1.18rem;font-variant-numeric:tabular-nums;}
+
+  .verdict{border-radius:12px;padding:13px 15px;font-size:.82rem;font-weight:500;line-height:1.4;border:1px solid var(--line);background:var(--surface);}
+  .verdict.ok{border-color:var(--green-dim);background:rgba(70,181,131,.07);}
+  .verdict.warn{border-color:#6a4a1f;background:rgba(224,163,60,.08);}
+  .verdict.bad{border-color:#6a2e25;background:var(--red-band);}
+  .verdict b{font-weight:700;}
+
+  .crosscheck{display:flex;justify-content:space-between;gap:10px;margin:13px 2px 0;font-size:.72rem;color:var(--muted);}
+  .crosscheck b{font-family:var(--mono);color:var(--text);font-weight:700;}
+  .diverge{color:var(--amber)!important;}
+
+  footer{margin-top:24px;text-align:center;font-size:.63rem;color:var(--faint);line-height:1.7;text-transform:uppercase;letter-spacing:.07em;}
+  .c-green{color:var(--green);} .c-amber{color:var(--amber);} .c-red{color:var(--red);}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">HEISENBERG<span class="b2"> HVAC</span></div>
+    <div class="tag">Pricer</div>
+  </header>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="subtabs" id="subtabs"></div>
+
+  <div class="lbl" id="axisLbl">Тоннаж</div>
+  <div class="chips" id="chips"></div>
+
+  <div class="extrap" id="extrap"></div>
+
+  <div class="lbl" id="equipLbl">Цена железа</div>
+  <div class="field">
+    <span class="cur">$</span>
+    <input type="number" id="equip" inputmode="numeric" placeholder="0" />
+  </div>
+
+  <details>
+    <summary>Параметры расчёта</summary>
+    <div class="adv-grid">
+      <div class="mini"><label>Часы работы</label><input type="number" id="hours" value="10"></div>
+      <div class="mini"><label>Ставка $/ч</label><input type="number" id="rate" value="100"></div>
+      <div class="mini"><label>Демонтаж $</label><input type="number" id="disp" value="200"></div>
+      <div class="mini"><label>Материалы $ (авто)</label><input type="number" id="mat" placeholder="auto"></div>
+    </div>
+  </details>
+
+  <div class="readout">
+    <div class="ro-lbl" id="roLbl">Рекомендованная цена</div>
+    <div class="price" id="price">—</div>
+    <div class="ro-sub" id="priceSub">—</div>
+  </div>
+
+  <div class="winbox">
+    <div class="win-top">
+      <span class="win-cap" id="winCap">Окно валидности железа</span>
+      <span class="win-range" id="winRange">—</span>
+    </div>
+    <div class="bar" id="bar">
+      <div class="green" id="greenBand"></div>
+      <div class="marker" id="marker" style="left:50%"></div>
+    </div>
+    <div class="win-state" id="winState"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="s-lbl">Себестоим.</div><div class="s-val" id="cost">—</div></div>
+    <div class="stat"><div class="s-lbl">Вал. маржа</div><div class="s-val" id="margin">—</div></div>
+    <div class="stat"><div class="s-lbl" id="multLbl">Множитель</div><div class="s-val" id="mult">—</div></div>
+  </div>
+
+  <div class="verdict" id="verdict">—</div>
+
+  <div class="crosscheck">
+    <div><span id="ccLbl">Гут-чек:</span> <b id="multPrice">—</b></div>
+    <div>Рынок: <b id="market">—</b></div>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function(){
+  var TABS = {
+    midea: {
+      label:'Midea', sub:'HP · R-454B',
+      unit:'т', axis:'Тоннаж', fUnit:'тонны', disp:200,
+      priceMode:'cost', base:2100, markup:1.5,
+      tons:[2,2.5,3,3.5,4,4.5,5],
+      EQ:[[2,3931],[2.5,4665],[3,5131],[4,6172],[5,6741]],
+      MAT:[[2,1208],[3,1208],[4,1344],[5,1344]],
+      MKLO:[[2,7500],[3,9000],[4,10000],[5,11000]],
+      MKHI:[[2,9000],[3,11000],[4,13000],[5,15000]],
+      labor:10, bigFrom:4.5,
+      eqLabel:'Цена железа (наружка + AH + термостат)',
+      bigNote:'<b>⚠ 4.5–5т — проверь часы.</b> 10 ч на 5т мало, ставь 12–14 ч. Страйп-хитер (если нужен) — отдельно сверху.',
+      foot:'Старт от железа · Midea: наружка HP + air handler + EVOX термостат $248 (страйп отдельно) · материалы ~$1,208 (лайнсет 50′ + плену́м + сурж + leak sensor + резин.подставки + $200) · R-454B taxable WA'
+    },
+    ac:{
+      label:'AC', sub:'changeout · любой бренд',
+      unit:'т', axis:'Тоннаж', fUnit:'тонны', disp:200,
+      priceMode:'cost', base:2000, markup:1.5,
+      tons:[2,2.5,3,3.5,4,4.5,5],
+      EQ:[[2,2402],[2.5,2546],[3,2661],[3.5,2883],[4,3024],[5,3394]],
+      MAT:[[2,1135],[3,1135],[4,1271],[5,1271]],
+      MKLO:[[2,3500],[3,4000],[4,4800],[5,5500]],
+      MKHI:[[2,5500],[3,6726],[4,7800],[5,9000]],
+      labor:7, bigFrom:99,
+      eqLabel:'Цена железа (конденсатор + койл)',
+      bigNote:'',
+      foot:'Старт от железа · конденсатор + койл (любой бренд; реф RunTru, oXBox дешевле на 2-3т) · материалы ~$1,135 (лайнсет 50′ + плену́м + фильтр-бокс Honeywell + leak sensor + $200) · R-454B taxable WA'
+    },
+    daikin1:{
+      label:'Single Zone', sub:'1 зона',
+      unit:'k', axis:'Мощность, BTU (тыс.)', fUnit:'тыс. BTU', disp:0,
+      priceMode:'cost', base:2552, markup:1.5,
+      tons:[6,9,12,18,24],
+      EQ:[[6,770],[9,865],[12,961],[18,1258],[24,1505]],
+      MAT:[[6,780],[18,780],[24,849]],
+      MKLO:[[6,2800],[9,3200],[12,3500],[18,4200],[24,4800]],
+      MKHI:[[6,4000],[9,4500],[12,5000],[18,5800],[24,6800]],
+      labor:8, bigFrom:9999,
+      eqLabel:'Цена железа (наружка + голова)',
+      bigNote:'',
+      foot:'Старт от железа · наружка + 1 голова (любой бренд; реф Daikin ENTRA, 6k — оценка) · материалы ~$780 (лайнсет 50′ + канал 10′ + сурж + пласт.подставки + подушка) · электрика сам'
+    },
+    zone2:{
+      label:'2 Zone', sub:'2 зоны',
+      unit:'k', axis:'Сумма BTU — 2 головы (тыс.)', fUnit:'тыс. BTU', disp:0,
+      priceMode:'cost', base:2700, markup:1.5,
+      tons:[18,21,24,28],
+      EQ:[[18,3027],[21,3183],[24,3339],[28,3547]],
+      MAT:[[18,1255],[24,1261],[28,1265]],
+      MKLO:[[18,5000],[28,6000]],
+      MKHI:[[18,7500],[28,8500]],
+      labor:12, bigFrom:9999,
+      eqLabel:'Цена железа (наружка 2-зон + 2 головы)',
+      bigNote:'',
+      foot:'Старт от железа · наружка 2-зон + 2 головы (любой бренд) · материалы ~$1,255 (2× лайнсет 50′+канал + сурж + подушка) · электрика сам'
+    },
+    zone3:{
+      label:'3 Zone', sub:'3 зоны',
+      unit:'k', axis:'Сумма BTU — 3 головы (тыс.)', fUnit:'тыс. BTU', disp:0,
+      priceMode:'cost', base:3900, markup:1.5,
+      tons:[27,30,36,42],
+      EQ:[[27,4402],[30,4558],[36,4870],[42,5182]],
+      MAT:[[27,1730],[36,1736],[42,1740]],
+      MKLO:[[27,8000],[42,9500]],
+      MKHI:[[27,12000],[42,14000]],
+      labor:18, bigFrom:9999,
+      eqLabel:'Цена железа (наружка 3-зон + 3 головы)',
+      bigNote:'',
+      foot:'Старт от железа · наружка 3-зон + 3 головы (любой бренд) · материалы ~$1,730 (3× лайнсет 50′+канал + сурж + подушка) · электрика сам'
+    }
+  };
+
+  // Верхний уровень: либо прямая вкладка {tab}, либо группа {group, kids}
+  var TOP = [
+    {tab:'midea'},
+    {tab:'ac'},
+    {group:'Mini Split', sub:'от железа · любой бренд', kids:['daikin1','zone2','zone3'], kidLabels:['Single Zone','2 Zone','3 Zone']}
+  ];
+
+  var active='midea', tons=3, userEdited=false, lastDef=null;
+
+  function interp(t,pts){
+    if(t<=pts[0][0]){var s=(pts[1][1]-pts[0][1])/(pts[1][0]-pts[0][0]);return pts[0][1]+(t-pts[0][0])*s;}
+    for(var i=0;i<pts.length-1;i++){if(t<=pts[i+1][0]){var f=(t-pts[i][0])/(pts[i+1][0]-pts[i][0]);return pts[i][1]+f*(pts[i+1][1]-pts[i][1]);}}
+    var n=pts.length-1,sl=(pts[n][1]-pts[n-1][1])/(pts[n][0]-pts[n-1][0]);return pts[n][1]+(t-pts[n][0])*sl;
+  }
+  var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+  var num=function(n){return n.toLocaleString('en-US');};
+  var clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
+  var chipTxt=function(t,u){return u==='k'?t+'k':t.toFixed(1);};
+
+  var E={};['tabs','subtabs','chips','extrap','axisLbl','equipLbl','roLbl','equip','hours','rate','disp','mat','price','priceSub','winCap','winRange','greenBand','marker','winState','cost','margin','multLbl','mult','verdict','ccLbl','multPrice','market','foot'].forEach(function(id){E[id]=document.getElementById(id);});
+
+  function topEntryFor(tabKey){
+    for(var i=0;i<TOP.length;i++){
+      var e=TOP[i];
+      if(e.tab===tabKey) return e;
+      if(e.group && e.kids.indexOf(tabKey)>=0) return e;
+    }
+    return null;
+  }
+
+  function buildTopTabs(){
+    E.tabs.innerHTML='';
+    TOP.forEach(function(e){
+      var isGroup=!!e.group, label, sub, disabled=false, on;
+      if(isGroup){ label=e.group; sub=e.sub; on=e.kids.indexOf(active)>=0; }
+      else { var c=TABS[e.tab]; label=c.label; sub=c.sub; disabled=!!c.disabled; on=(active===e.tab); }
+      var d=document.createElement('div');
+      d.className='tab'+(on?' on':'')+(disabled?' dis':'');
+      d.innerHTML='<div class="t-name">'+label+'</div><div class="t-sub">'+sub+'</div>';
+      if(!disabled){
+        d.addEventListener('click',function(){
+          if(isGroup) setTab(e.kids[0]);
+          else setTab(e.tab);
+        });
+      }
+      E.tabs.appendChild(d);
+    });
+  }
+
+  function buildSubTabs(){
+    var e=topEntryFor(active);
+    if(e && e.group){
+      E.subtabs.style.display='flex';
+      E.subtabs.innerHTML='<span class="sub-cap">'+e.group+':</span>';
+      e.kids.forEach(function(k,i){
+        var d=document.createElement('div');
+        d.className='subtab'+(k===active?' on':'');
+        d.textContent=e.kidLabels[i];
+        d.addEventListener('click',function(){setTab(k);});
+        E.subtabs.appendChild(d);
+      });
+    } else {
+      E.subtabs.style.display='none';
+      E.subtabs.innerHTML='';
+    }
+  }
+
+  function buildChips(){
+    var c=TABS[active];
+    E.chips.style.gridTemplateColumns='repeat('+Math.min(c.tons.length,4)+',1fr)';
+    E.chips.innerHTML='';
+    c.tons.forEach(function(t){
+      var d=document.createElement('div');
+      d.className='chip'+(t>=(c.bigFrom||99999)?' x':'')+(t===tons?' on':'');
+      d.textContent=chipTxt(t,c.unit); d.dataset.t=t;
+      d.addEventListener('click',function(){setTon(t);});
+      E.chips.appendChild(d);
+    });
+  }
+
+  // ПОЛНЫЙ СБРОС всех полей под выбранную вкладку
+  function setTab(k){
+    active=k; var c=TABS[k];
+    var costMode=(c.priceMode==='cost');
+    tons=c.tons[Math.floor(c.tons.length/2)];
+    userEdited=false; lastDef=null;
+    E.axisLbl.textContent=c.axis;
+    E.equipLbl.textContent=c.eqLabel;
+    E.roLbl.textContent=costMode?'Стартовая цена':'Рекомендованная цена';
+    E.winCap.textContent=costMode?'Позиция в рынке (Clark Co.)':'Окно валидности железа';
+    E.multLbl.textContent=costMode?'Цена÷железо':'Множитель';
+    E.ccLbl.textContent=costMode?'Маркап:':'Гут-чек:';
+    E.hours.value=c.labor;
+    E.rate.value=100;
+    E.disp.value=c.disp;
+    E.mat.value='';
+    E.foot.innerHTML=c.foot+'<br>Стандарт-монтаж · нестандарт = T&amp;M сверху · Permit pass-through + $75 · 27.06.2026';
+    buildTopTabs(); buildSubTabs(); buildChips();
+    var def=Math.round(interp(tons,c.EQ));
+    lastDef=def; E.equip.value=''; E.equip.placeholder='реф '+def;
+    render();
+  }
+  function setTon(t){
+    tons=t; var c=TABS[active];
+    [].forEach.call(E.chips.children,function(ch){ch.classList.toggle('on',+ch.dataset.t===t);});
+    var def=Math.round(interp(t,c.EQ));
+    E.equip.placeholder='реф '+def;
+    lastDef=def; render();
+  }
+
+  function render(){
+    var c=TABS[active], costMode=(c.priceMode==='cost');
+    E.extrap.style.display=(tons>=c.bigFrom && c.bigNote)?'block':'none';
+    E.extrap.innerHTML=c.bigNote||'';
+
+    var equip=parseFloat(E.equip.value), hasEq=!isNaN(equip)&&equip>0;
+
+    // ---- ЦЕНА ----
+    var price = costMode ? (hasEq ? c.base + c.markup*equip : null) : (c.fA + c.fB*tons);
+    E.price.textContent = price!=null ? fmt(price) : '—';
+    E.priceSub.textContent = costMode
+      ? 'старт = $'+num(c.base)+' + '+c.markup+'× железо · + электрика сам'
+      : 'формула $'+num(c.fA)+' + $'+num(c.fB)+' × '+c.fUnit+' · до WA tax';
+
+    var mkLo=interp(tons,c.MKLO), mkHi=interp(tons,c.MKHI), mkMid=(mkLo+mkHi)/2;
+    E.market.textContent=fmt(mkLo)+'–'+fmt(mkHi);
+
+    // ---- нет железа: чистим динамику ----
+    if(!hasEq){
+      E.cost.textContent='—';E.margin.textContent='—';E.margin.className='s-val';E.mult.textContent='—';
+      E.winRange.textContent = costMode ? fmt(mkLo)+' – '+fmt(mkHi) : '—';
+      E.greenBand.style.left='25%';E.greenBand.style.width='50%';
+      E.marker.style.left='50%';E.marker.classList.remove('out');
+      E.multPrice.textContent = costMode ? '×'+c.markup : '—';
+      E.multPrice.classList.remove('diverge');
+      E.winState.innerHTML='<span class="dot" style="background:var(--faint)"></span><span>Введи цену железа</span>';
+      E.verdict.className='verdict';
+      E.verdict.innerHTML = costMode
+        ? 'Введи цену железа — посчитаю старт, маржу и позицию в рынке.'
+        : 'Введи цену железа — добавлю маржу и проверю окно.';
+      return;
+    }
+
+    // ---- себестоимость / маржа (общее) ----
+    var mat=E.mat.value!==''?parseFloat(E.mat.value):interp(tons,c.MAT);
+    var labor=(parseFloat(E.hours.value)||0)*(parseFloat(E.rate.value)||0);
+    var disp=parseFloat(E.disp.value)||0;
+    var cost=equip+mat+labor+disp, marg=(price-cost)/price, im=price/equip;
+
+    E.cost.textContent=fmt(cost);
+    E.mult.textContent='×'+im.toFixed(2);
+    E.margin.textContent=(marg*100).toFixed(0)+'%';
+    E.margin.className='s-val '+(marg>=.24?'c-green':marg>=.15?'c-amber':'c-red');
+
+    var dotC,stTxt,vClass,vHtml,mpct=(marg*100).toFixed(0);
+
+    if(costMode){
+      // ===== COST-РЕЖИМ: бар = позиция ЦЕНЫ в рынке, вердикт по марже =====
+      E.winRange.textContent=fmt(mkLo)+' – '+fmt(mkHi);
+      var dMin=mkLo*0.80, dMax=mkHi*1.12, rng=dMax-dMin;
+      E.greenBand.style.left=((mkLo-dMin)/rng*100)+'%';
+      E.greenBand.style.width=((mkHi-mkLo)/rng*100)+'%';
+      E.marker.style.left=(clamp((price-dMin)/rng,0,1)*100)+'%';
+      var overMkt=price>mkHi, underMkt=price<mkLo;
+      E.marker.classList.toggle('out',overMkt);
+      E.multPrice.textContent='×'+im.toFixed(2)+' от железа';
+      E.multPrice.classList.remove('diverge');
+
+      var posTxt = overMkt?'Выше потолка рынка'
+                 : underMkt?'Ниже рынка — очень конкурентно'
+                 : (price<=mkMid?'Низ-середина рынка':'Верх рынка');
+
+      if(overMkt){
+        dotC='var(--red)';vClass='bad';
+        vHtml='<b>⚠ Цена выше потолка рынка ('+fmt(mkHi)+').</b> Железо дорогое для размера — продать трудно. Ищи железо дешевле или это другой класс.';
+      } else if(marg<0.15){
+        dotC='var(--red)';vClass='bad';
+        vHtml='<b>⚠ Маржа '+mpct+'% — слишком тонко.</b> Железо дорогое под этот старт. Подними цену или ищи железо дешевле.';
+      } else if(marg<0.24){
+        dotC='var(--amber)';vClass='warn';
+        vHtml='<b>⚠ Маржа тонкая '+mpct+'%.</b> Для мультизоны/тяжёлого монтажа рискованно — права на ошибку нет. Цена: '+posTxt.toLowerCase()+'.';
+      } else {
+        dotC='var(--green)';vClass='ok';
+        vHtml = (price<=mkMid)
+          ? '<b>✓ Маржа '+mpct+'% и цена конкурентная.</b> Низ-середина рынка — хорошо стартовать, сверху добираешь по лояльности.'
+          : '<b>✓ Маржа '+mpct+'%.</b> Цена в верхней части рынка — по деньгам здорово, но не агрессивно. Ок, если клиент не торгуется.';
+      }
+      E.winState.innerHTML='<span class="dot" style="background:'+dotC+'"></span><span>'+posTxt+'</span>';
+      E.verdict.className='verdict '+vClass;E.verdict.innerHTML=vHtml;
+
+    } else {
+      // ===== ФОРМУЛА-РЕЖИМ: бар = окно валидности железа =====
+      var winLo=interp(tons,c.WLO), winHi=interp(tons,c.WHI);
+      E.winRange.textContent=fmt(winLo)+' – '+fmt(winHi);
+      var span=winHi-winLo, fMin=winLo-span*0.75, fMax=winHi+span*0.75, frng=fMax-fMin;
+      E.greenBand.style.left=((winLo-fMin)/frng*100)+'%';
+      E.greenBand.style.width=(span/frng*100)+'%';
+      E.marker.style.left=(clamp((equip-fMin)/frng,0,1)*100)+'%';
+      var inWin=equip>=winLo&&equip<=winHi;
+      E.marker.classList.toggle('out',!inWin);
+      var mlt=interp(tons,c.MULT);
+      E.multPrice.textContent=fmt(equip*mlt)+'  (×'+mlt.toFixed(1)+')';
+      E.multPrice.classList.toggle('diverge',Math.abs(equip*mlt-price)/price>0.08);
+
+      if(inWin){
+        dotC='var(--green)';stTxt='Железо в окне';vClass='ok';
+        vHtml='<b>✓ Стандартная сделка.</b> Железо в окне — формула честная. Маржа ~'+mpct+'%. Жми цену.';
+        if(marg<0.24) vHtml='<b>✓ В окне, но маржа тонкая ('+mpct+'%).</b> Железо дороговато для размера — проверь.';
+      } else if(equip>winHi){
+        dotC='var(--red)';stTxt='Железо ВЫШЕ окна';vClass='bad';
+        vHtml='<b>⚠ Железо выше окна.</b> Формула уводит за потолок рынка ('+fmt(mkHi)+') — маржа просядет до '+mpct+'%. Другой тир или считай от рынка.';
+      } else {
+        dotC='var(--amber)';stTxt='Железо НИЖЕ окна';vClass='warn';
+        vHtml='<b>⚠ Железо ниже окна.</b> Формула недобирает — при марже '+mpct+'% отдаёшь деньги. Бери ближе к рынку.';
+      }
+      E.winState.innerHTML='<span class="dot" style="background:'+dotC+'"></span><span>'+stTxt+'</span>';
+      E.verdict.className='verdict '+vClass;E.verdict.innerHTML=vHtml;
+    }
+  }
+
+  E.equip.addEventListener('input',function(){userEdited=true;render();});
+  ['hours','rate','disp','mat'].forEach(function(id){E[id].addEventListener('input',render);});
+
+  setTab('midea');
+})();
+</script>
+</body>
+</html>
